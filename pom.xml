@@ -22,13 +22,25 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.github.ricksbrown</groupId>
+    		<artifactId>cowsay</artifactId>
+    		<version>1.0.3</version>
+    	</dependency>
+    	
+    	<dependency>
+    		<groupId>de.javatux.jfortune</groupId>
+    		<artifactId>jfortune</artifactId>
+    		<version>0.5</version>
 		</dependency>
 	</dependencies>
 
