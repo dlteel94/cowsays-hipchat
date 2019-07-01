@@ -1,6 +1,5 @@
 package com.dustinteel.hipchat.integration.controller;
 
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,7 @@ public class ConfigurationController {
 	ConfigurationService configurationService;
 	
 	@GetMapping("/descriptor")
-	public IntegrationDescriptor getIntegrationDescriptor() throws JSONException {
+	public IntegrationDescriptor getIntegrationDescriptor() {
 		return configurationService.getDescriptor();
 	}
 	
