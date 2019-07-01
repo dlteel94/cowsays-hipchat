@@ -23,7 +23,7 @@ public class ConfigurationService {
 		capabilities.setInstallable(installable);
 		
 		HipchatApiConsumer hipchatApiConsumer = new HipchatApiConsumer();
-		String[] scopesArray = {"SEND_NOTIFICATION"};
+		String[] scopesArray = {"send_notification"};
 		List<String> scopes = new ArrayList<>(Arrays.asList(scopesArray));
 		hipchatApiConsumer.setScopes(scopes);
 		
