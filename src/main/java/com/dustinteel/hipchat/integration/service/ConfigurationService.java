@@ -19,19 +19,20 @@ public class ConfigurationService {
 		installable.setAllowRoom(true);
 		installable.setCallbackUrl("https://cowsays-integration.herokuapp.com/installed-callback");
 		
-		Capabilities capabilities = new Capabilities();
-		capabilities.setInstallable(installable);
-		
 		HipchatApiConsumer hipchatApiConsumer = new HipchatApiConsumer();
 		String[] scopesArray = {"send_notification"};
 		List<String> scopes = new ArrayList<>(Arrays.asList(scopesArray));
 		hipchatApiConsumer.setScopes(scopes);
 		
+		Capabilities capabilities = new Capabilities();
+		capabilities.setInstallable(installable);
+		capabilities.setHipchatApiConsumer(hipchatApiConsumer);
+		
 		IntegrationDescriptor integrationDescriptor = new IntegrationDescriptor();
 		integrationDescriptor.setCapabilities(capabilities);
-		integrationDescriptor.setHipchatApiConsumer(hipchatApiConsumer);
 		integrationDescriptor.setKey("com.dustinteel.hipchat.integration");
 		integrationDescriptor.setName("Cowsays");
+		integrationDescriptor.setDescription("Integration that allows users to interact with the linux cowsay command.");
 		
 		return integrationDescriptor;
 	}

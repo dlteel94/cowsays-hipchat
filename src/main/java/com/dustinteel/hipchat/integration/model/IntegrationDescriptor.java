@@ -3,8 +3,8 @@ package com.dustinteel.hipchat.integration.model;
 public class IntegrationDescriptor {
 	private String name;
 	private String key;
+	private String description;
 	private Capabilities capabilities;
-	private HipchatApiConsumer hipchatApiConsumer;
 	public String getName() {
 		return name;
 	}
@@ -23,10 +23,10 @@ public class IntegrationDescriptor {
 	public void setCapabilities(Capabilities capabilites) {
 		this.capabilities = capabilites;
 	}
-	public HipchatApiConsumer getHipchatApiConsumer() {
-		return hipchatApiConsumer;
+	public String getDescription() {
+		return description;
 	}
-	public void setHipchatApiConsumer(HipchatApiConsumer hipchatApiConsumer) {
-		this.hipchatApiConsumer = hipchatApiConsumer;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
