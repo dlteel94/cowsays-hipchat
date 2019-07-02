@@ -5,6 +5,9 @@ public class IntegrationDescriptor {
 	private String key;
 	private String description;
 	private Capabilities capabilities;
+	private Vendor vendor;
+	private Links links;
+	
 	public String getName() {
 		return name;
 	}
@@ -28,5 +31,17 @@ public class IntegrationDescriptor {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Vendor getVendor() {
+		return vendor;
+	}
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
+	}
+	public Links getLinks() {
+		return links;
+	}
+	public void setLinks(Links links) {
+		this.links = links;
 	}
 }

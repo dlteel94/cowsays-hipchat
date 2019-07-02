@@ -10,6 +10,8 @@ import com.dustinteel.hipchat.integration.model.Capabilities;
 import com.dustinteel.hipchat.integration.model.HipchatApiConsumer;
 import com.dustinteel.hipchat.integration.model.Installable;
 import com.dustinteel.hipchat.integration.model.IntegrationDescriptor;
+import com.dustinteel.hipchat.integration.model.Links;
+import com.dustinteel.hipchat.integration.model.Vendor;
 
 @Service
 public class ConfigurationService {
@@ -25,14 +27,22 @@ public class ConfigurationService {
 		hipchatApiConsumer.setScopes(scopes);
 		
 		Capabilities capabilities = new Capabilities();
-		capabilities.setInstallable(installable);
 		capabilities.setHipchatApiConsumer(hipchatApiConsumer);
+		
+		Vendor vendor = new Vendor();
+		vendor.setName("Dustin Teel");
+		vendor.setUrl("https://github.com/dustinteel");
+		
+		Links links = new Links();
+		links.setSelf("https://cowsays-integration.herokuapp.com/descriptor");
 		
 		IntegrationDescriptor integrationDescriptor = new IntegrationDescriptor();
 		integrationDescriptor.setCapabilities(capabilities);
 		integrationDescriptor.setKey("com.dustinteel.hipchat.integration");
 		integrationDescriptor.setName("Cowsays");
 		integrationDescriptor.setDescription("Integration that allows users to interact with the linux cowsay command.");
+		integrationDescriptor.setLinks(links);
+		integrationDescriptor.setVendor(vendor);
 		
 		return integrationDescriptor;
 	}
