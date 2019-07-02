@@ -12,6 +12,7 @@ import com.dustinteel.hipchat.integration.model.Installable;
 import com.dustinteel.hipchat.integration.model.IntegrationDescriptor;
 import com.dustinteel.hipchat.integration.model.Links;
 import com.dustinteel.hipchat.integration.model.Vendor;
+import com.dustinteel.hipchat.integration.model.Webhook;
 
 @Service
 public class ConfigurationService {
@@ -26,9 +27,20 @@ public class ConfigurationService {
 		List<String> scopes = new ArrayList<>(Arrays.asList(scopesArray));
 		hipchatApiConsumer.setScopes(scopes);
 		
+		Webhook webhook = new Webhook();
+		webhook.setUrl("https://cowsays-integration.herokuapp.com/message-webhook");
+		webhook.setEvent("room_message");
+		webhook.setPattern(".*");
+		webhook.setName("Cowsays");
+		webhook.setAuthentication("jwt");
+		
+		Webhook[] webhooksArray = {webhook};
+		
+		List<Webhook> webhooks = Arrays.asList(webhooksArray);
+		
 		Capabilities capabilities = new Capabilities();
 		capabilities.setHipchatApiConsumer(hipchatApiConsumer);
-		
+		capabilities.setWebhook(webhooks);
 		Vendor vendor = new Vendor();
 		vendor.setName("Dustin Teel");
 		vendor.setUrl("https://github.com/dustinteel");
