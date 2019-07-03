@@ -10,6 +10,7 @@ import com.dustinteel.hipchat.integration.model.Incoming;
 public class MessageController {
 	@PostMapping("/message-webhook")
 	public HttpStatus processMessage(Incoming incoming) {
+		System.out.println(incoming.getItem().getMessage());
 		return HttpStatus.OK;
 	}
 }
