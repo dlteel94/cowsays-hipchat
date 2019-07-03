@@ -26,20 +26,21 @@ public class MessageController {
 	
 	@PostMapping("/message-webhook")
 	public HipchatMessage processMessage(@RequestBody Incoming incoming) throws IOException {
-		String[] message = incoming.getItem().getIncomingMessage().getMessage().split("\\s+", 3);
+		String[] message = incoming.getItem().getIncomingMessage().getMessage().split("\\s+", 2);
 		String returnMessage;
 		// make sure it starts with /cowsay
-		if (!message[0].equalsIgnoreCase(COWSAY_COMMAND)) {
+		if (!message[0].trim().equalsIgnoreCase(COWSAY_COMMAND)) {
 			return createMessage(false, false, "Your command must start with '/cowsay', and contain a command or phrase after.", "red");
 		}
 		
 		// TODO: Add more functionality here
 		// If second token from message is '-f', then generate a fortune and return it in cowsay format.
+		System.out.println(message[1].trim());
 		if (message[1].trim().equalsIgnoreCase(FORTUNE_OPTION)) {
 			returnMessage = fortuneService.generateFortune();
 		} else {
 			// Return a cowsay with entered message
-			returnMessage = incoming.getItem().getIncomingMessage().getMessage().split("\\s+, 2")[1];
+			returnMessage = message[1];
 		}
 		return createMessage(true, true, returnMessage, "green");
 	}
