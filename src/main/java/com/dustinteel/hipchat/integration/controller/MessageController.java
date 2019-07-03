@@ -20,8 +20,8 @@ public class MessageController {
 	private HttpServletRequest request;
 	
 	@PostMapping("/message-webhook")
-	public HttpStatus processMessage() throws IOException {
-		System.out.println(request.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
+	public HttpStatus processMessage(@RequestBody Incoming incoming) throws IOException {
+		System.out.println(incoming.getItem().getIncomingMessage().getMessage());
 		return HttpStatus.OK;
 	}
 }

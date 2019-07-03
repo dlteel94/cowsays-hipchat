@@ -7,8 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class IncomingItem {
 	private String id;
 	private List<String> mentions;
-	private String message;
-	private String type;
 	private IncomingMessage incomingMessage;
 	private IncomingRoom room;
 	
@@ -23,18 +21,6 @@ public class IncomingItem {
 	}
 	public void setMentions(List<String> mentions) {
 		this.mentions = mentions;
-	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
 	}
 	@JsonProperty("message")
 	public IncomingMessage getIncomingMessage() {
