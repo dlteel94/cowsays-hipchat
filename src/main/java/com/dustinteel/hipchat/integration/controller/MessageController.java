@@ -14,14 +14,16 @@ import com.dustinteel.hipchat.integration.service.CowsaysService;
 @RestController
 public class MessageController {
 	
+	private final String COWSAY_COMMAND = "/cowsay";
+	
 	@Autowired
 	CowsaysService cowsaysService;
 	
 	@PostMapping("/message-webhook")
 	public HipchatMessage processMessage(@RequestBody Incoming incoming) throws IOException {
 		String message = incoming.getItem().getIncomingMessage().getMessage();
-		if (message.indexOf("/cowsay") == 0) {
-			message = message.substring(7, message.length());
+		if (message.indexOf(COWSAY_COMMAND) == 0) {
+			message = message.substring(COWSAY_COMMAND.length(), message.length());
 		} else {
 			message = "Cannot do things.";
 		}
