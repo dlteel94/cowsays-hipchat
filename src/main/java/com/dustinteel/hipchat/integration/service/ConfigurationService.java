@@ -30,7 +30,7 @@ public class ConfigurationService {
 		Webhook webhook = new Webhook();
 		webhook.setUrl("https://cowsays-integration.herokuapp.com/message-webhook");
 		webhook.setEvent("room_message");
-		webhook.setPattern(".*");
+		webhook.setPattern("^/cowsay\\s+\\S.*");
 		webhook.setName("Cowsays");
 		webhook.setAuthentication("jwt");
 		
