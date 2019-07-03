@@ -2,12 +2,9 @@ package com.dustinteel.hipchat.integration.controller;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dustinteel.hipchat.integration.model.HipchatMessage;
@@ -18,8 +15,17 @@ public class MessageController {
 	
 	@PostMapping("/message-webhook")
 	public HipchatMessage processMessage(@RequestBody Incoming incoming) throws IOException {
-		HipchatMessage message = new HipchatMessage();
-		message.setMessage(incoming.getItem().getIncomingMessage().getMessage());
-		return message;
+		String message = incoming.getItem().getIncomingMessage().getMessage();
+		if (message.indexOf("/cowsay") == 0) {
+			message = message.substring(6, message.length());
+		} else {
+			message = "Cannot do things.";
+		}
+		HipchatMessage hipchatMessage = new HipchatMessage();
+		hipchatMessage.setMessage(message);
+		hipchatMessage.setColor("GREEN");
+		hipchatMessage.setMessage_format("html");
+		hipchatMessage.setNotify(true);
+		return hipchatMessage;
 	}
 }
