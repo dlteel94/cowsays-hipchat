@@ -2,7 +2,7 @@
 A hipchat integration for formatting text with the class cowsay package.  It also includes functionality to format cookies from the classic fortune package with cowsay.
 
 ## Deploy Status
-[![Heroku](https://heroku-badge.herokuapp.com/?app=cowsays-integration?root=https://cowsays-integration.herokuapp.com/descriptor)]
+// TODO: Add deploy status badge
 
 ## Installing on Hipchat
 To get the master branch version, add the integration on the room level in Hipchat with the descriptor URL https://cowsays-integration.herokuapp.com/descriptor.  This is currently hosted on a free Heroku instance, so it may need to wake up when receiving the first command in a while.  If you do not receive a response, try to issue your command a few seconds later.
