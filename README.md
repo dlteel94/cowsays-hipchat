@@ -5,7 +5,7 @@ A hipchat integration for formatting text with the class cowsay package.  It als
 // TODO: Add deploy status badge
 
 ## Contributing
-We welcome contributions to this project.  To contribute, either find an issue marked pr-welcome, assign it to yourself, and then put up a pr for it, or create your own issue, assign it to yourself, then put up a PR for it.
+We welcome contributions to this project.  To contribute, either find an issue marked pr-welcome, assign it to yourself, and then put up a pr for it, or create your own issue, assign it to yourself, then put up a PR for it into the **master** branch.
 
 We also welcome PR Reviews.  PRs will need a certain amount of approvals before being merged.  This number will change as the number of active contributors change.  One of the approvals must be from a repo owner in order to be merged.  We will release production builds on Heroku at a regular schedule.  See the "Installing on Hipchat" for more info on installing the production integration in your Hipchat room.
 
