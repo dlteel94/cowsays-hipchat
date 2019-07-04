@@ -24,5 +24,5 @@ Get a cowsay with the <any_other_text>
 Get help text that explains each command and how to use it.  Check this command regularly to learn about new features.
 
 #### Contributors
-The following Github users have contributed to this project (with thier contributions making it to the master branch.  This list will be updated on a regular basis.
+The following Github users have contributed to this project (with thier contributions making it to the master branch.  **You should add your Github username to this list at the end when subitting a PR if it is not already on the list.  Please maintain order.**
 - dlteel94
