@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dustinteel.hipchat.integration.model.HipchatMessage;
 import com.dustinteel.hipchat.integration.model.Incoming;
+import com.dustinteel.hipchat.integration.service.CowsayTerminalService;
 import com.dustinteel.hipchat.integration.service.CowsaysService;
 import com.dustinteel.hipchat.integration.service.FortuneService;
 
@@ -21,6 +22,9 @@ public class MessageController {
 	private final String FORTUNE_OPTION = "-f";
 	
 	@Autowired
+	CowsayTerminalService cowsayTerminalService;
+	
+	@Autowired
 	CowsaysService cowsaysService;
 	
 	@Autowired
@@ -28,15 +32,7 @@ public class MessageController {
 	
 	@RequestMapping("/test")
 	public String getCowsayMessage() {
-		ProcessBuilder pb = new ProcessBuilder("cowsay","I work!");
-		String ayy = "Something went wrong!";
-		try {
-			ayy = IOUtils.toString(pb.start().getInputStream(), "UTF-8");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return String.format("<pre>%s</pre>",ayy);
+		return cowsayTerminalService.generateCowsay();
 	}
 	
 	@PostMapping("/message-webhook")
