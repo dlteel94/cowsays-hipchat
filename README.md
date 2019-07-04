@@ -23,3 +23,6 @@ Get a cowsay with the <any_other_text>
 (Coming soon)
 Get help text that explains each command and how to use it.  Check this command regularly to learn about new features.
 
+#### Contributors
+The following Github users have contributed to this project (with thier contributions making it to the master branch.  This list will be updated on a regular basis.
+- dlteel94
