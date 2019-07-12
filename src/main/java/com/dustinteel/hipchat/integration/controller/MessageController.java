@@ -1,7 +1,6 @@
 package com.dustinteel.hipchat.integration.controller;
 
-import java.io.IOException;
-
+import org.codehaus.plexus.util.cli.Commandline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,14 +8,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dustinteel.hipchat.integration.model.HipchatMessage;
 import com.dustinteel.hipchat.integration.model.Incoming;
+import com.dustinteel.hipchat.integration.service.ArgumentParsingService;
 import com.dustinteel.hipchat.integration.service.CowsaysService;
 import com.dustinteel.hipchat.integration.service.FortuneService;
+
+import net.sourceforge.argparse4j.inf.ArgumentParserException;
+import net.sourceforge.argparse4j.inf.Namespace;
 
 @RestController
 public class MessageController {
 	
 	private final String COWSAY_COMMAND = "/cowsay";
 	private final String FORTUNE_OPTION = "-f";
+	private final String TEXT_OPTION = "-t";
+	private final String HELP_OPTION = "-h";
 	
 	@Autowired
 	CowsaysService cowsaysService;
@@ -24,8 +29,11 @@ public class MessageController {
 	@Autowired
 	FortuneService fortuneService;
 	
+	@Autowired
+	ArgumentParsingService argumentParsingService;
+	
 	@PostMapping("/message-webhook")
-	public HipchatMessage processMessage(@RequestBody Incoming incoming) throws IOException {
+	public HipchatMessage processMessage(@RequestBody Incoming incoming) throws ArgumentParserException, Exception {
 		String[] message = incoming.getItem().getIncomingMessage().getMessage().split("\\s+", 2);
 		String returnMessage;
 		// make sure it starts with /cowsay
@@ -35,12 +43,17 @@ public class MessageController {
 		
 		// TODO: Add more functionality here
 		// If second token from message is '-f', then generate a fortune and return it in cowsay format.
-		System.out.println(message[1].trim());
-		if (message[1].trim().equalsIgnoreCase(FORTUNE_OPTION)) {
+		
+		Namespace namespace = argumentParsingService.parseArguments(Commandline.translateCommandline(message[2]));
+		if (namespace.getBoolean(FORTUNE_OPTION)) {
 			returnMessage = fortuneService.generateFortune();
-		} else {
+		} else if (namespace.getString(TEXT_OPTION) != null){
 			// Return a cowsay with entered message
-			returnMessage = message[1];
+			returnMessage = namespace.getString(TEXT_OPTION);
+		} else if (namespace.getBoolean(HELP_OPTION)) {
+			returnMessage = argumentParsingService.getHelp();
+		} else {
+			returnMessage = "I'm sorry, I couldn't find any valid arguments in your command.  Please check your command and try again.";
 		}
 		return createMessage(true, true, returnMessage, "green");
 	}
